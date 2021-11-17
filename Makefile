@@ -4,5 +4,5 @@ default:
 	pdflatex main.tex
 
 clean:
-	rm -f *.aux *.bbl *.bcf *.blg *.log *.xml
+	rm -f *.aux *.bbl *.bcf *.blg *.log *.xml *.pdf
 
