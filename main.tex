@@ -1,5 +1,7 @@
 \documentclass[12pt, letterpaper]{article}
 
+\usepackage{url}
+
 %Line Spacing
 \usepackage{setspace}
 \doublespacing
@@ -13,6 +15,9 @@
 %Citations
 \usepackage[backend=biber,style=ieee,urldate=long]{biblatex}
 \addbibresource{refs.bib}
+
+%Figures
+\usepackage{float}
 
 \title{Passwordless Authentication}
 \author{Zachary Thompson}
@@ -32,6 +37,7 @@ It will describe various methods of passwordless authentication and discuss thei
 
 \newpage
 \section{Discussion}
+
 \subsection{The Problem With Passwords}
 Password-based authentication has a number of flaws.
 For one, passwords are prone to reuse.
@@ -42,35 +48,50 @@ If an attacker were to compromise one password, then there is a good chance they
 Another problem is that good passwords are difficult to memorize.
 Good passwords are long and use different types of symbols.
 Ideally, a password would be a long, randomly generated string of characters.
-A password like that is hard enough to memorize for one website, let alone all of them.
+A password like that is hard enough to memorize for one website, let alone all of the ones we use.
 
 Password managers help in this regard.
 They are able to generate and store passwords for you.
 This means that, assuming the password manager is used correctly, all of your passwords will be difficult to crack and will be unique. 
 However, all of your passwords are now only as strong as your master password (and the security of your password manager).
 
-Passwords are particularly vulnerable to any sort of attack which involves the attacker stealing the password.
-A common example of this type of attack is phishing; the attacker tricks the user into entering their password by sending them a deceptive message.
+Passwords are particularly vulnerable to any sort of attack which involves the attacker stealing the password instead of guessing it.
+A common example of this type of attack is phishing: the attacker tricks the user into entering their password by sending them a deceptive message.
 Phishing was the most common type of cyber crime in 2020 and a password manager will not defend against this type of attack \parencite{fbi2020icr}.
+Another way an attacker could steal a password is through a data breach.
+The website haveibeenpwned.com, which keeps track of leaked credentials, has over 613 million revealed passwords in its records \parencite{hibpweb}.
 
 Clearly passwords have a number of flaws which need to be addressed.
 81\% of hacking-related security breaches in 2017 involved stolen or weak passwords, so there is plenty of reason to look for an alternative authentication method \parencite{verizon2017dbir}.
 
 \subsection{A Solution: Get Rid of the Password}
-Perhaps one way to eliminate the problems of passwords is to use some other form of authentication.
+Perhaps the way to eliminate the problems of passwords is to not use them at all and use some other form of authentication.
 That is exactly what Microsoft allows you to do with their Authenticator app. 
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics[width=0.5\textwidth]{mslogin.png}
 \includegraphics[width=0.5\textwidth]{authenticator.png}
 \caption{Microsoft's Passwordless Authentication\label{msauth}}
 \end{figure}
 
-Figure \ref{msauth} shows what Microsoft's passwordless authentication is like.
-Every time you login to your Microsoft account you will get a prompt on your phone which will ask you to select the same number that is displayed on the device you wish to log into.
+Figure \ref{msauth} shows Microsoft's passwordless authentication system.
+Every time you login to your Microsoft account, you will get a prompt on your phone which will ask you to select the same number that is displayed on the device you wish to log into.
+
+A passwordless authentication scheme does not have to work exactly like Microsoft's where the user needs to use a smartphone app; it could also use biometrics or some type of smart token.
+In fact, any of these methods can be combined to have much stronger, multi-factor authentication.
+
+This type of system is not vulnerable to any of the flaws that were discussed earlier with passwords.
+The user does not have to remember anything, they simply need to have access to the token that they set up.
+Phishing attacks are virtually impossible 
 
 \subsection{Account Recovery}
-If the user is no longer able to access their authentication method, then there needs to be some form of account recovery so that the user can fix the issue.
+If the user is no longer able to access their authentication method (e.g. they lose their phone), then there needs to be some form of account recovery so that the user can fix the issue.
+
+There are many potential ways to facilitate account revovery with a passwordless authentication system.
+According to \parencite{kunke2021evaluation}, their analysis found that the strongest, currently in use mechanism was setting up a backup token.
+When the primary token is lost, then the backup token could be used to get into the account and reset the primary token.
+
+\subsection{Potential Problems}
 
 \newpage
 \section{Analysis and Recommendations}
